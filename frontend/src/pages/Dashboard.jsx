@@ -166,7 +166,7 @@ const Dashboard = () => {
   });
 
   return (
-    <div className="min-h-screen bg-[#FDFCF8] text-stone-900 pb-16 flex flex-col font-sans select-none">
+    <div className="min-h-screen bg-[#FDFCF8] text-stone-900 pb-16 flex flex-col font-sans">
       <Navbar />
 
       {/* Dynamic Header Section */}

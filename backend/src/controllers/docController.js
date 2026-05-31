@@ -85,7 +85,7 @@ export const updateDocument = async (req, res, next) => {
 
     // Auth check
     const isOwner = doc.owner.toString() === req.user._id.toString();
-    const isCollaborator = doc.collaborators.includes(req.user._id);
+    const isCollaborator = doc.collaborators.some(c => c.toString() === req.user._id.toString());
 
     if (!isOwner && !isCollaborator) {
       res.status(403);
@@ -146,7 +146,7 @@ export const duplicateDocument = async (req, res, next) => {
     }
 
     const isOwner = doc.owner.toString() === req.user._id.toString();
-    const isCollaborator = doc.collaborators.includes(req.user._id);
+    const isCollaborator = doc.collaborators.some(c => c.toString() === req.user._id.toString());
 
     if (!isOwner && !isCollaborator) {
       res.status(403);
@@ -261,7 +261,7 @@ export const getDocumentVersions = async (req, res, next) => {
     }
 
     const isOwner = doc.owner.toString() === req.user._id.toString();
-    const isCollaborator = doc.collaborators.includes(req.user._id);
+    const isCollaborator = doc.collaborators.some(c => c.toString() === req.user._id.toString());
 
     if (!isOwner && !isCollaborator) {
       res.status(403);
@@ -291,7 +291,7 @@ export const restoreDocumentVersion = async (req, res, next) => {
     }
 
     const isOwner = doc.owner.toString() === req.user._id.toString();
-    const isCollaborator = doc.collaborators.includes(req.user._id);
+    const isCollaborator = doc.collaborators.some(c => c.toString() === req.user._id.toString());
 
     if (!isOwner && !isCollaborator) {
       res.status(403);

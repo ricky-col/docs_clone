@@ -260,7 +260,7 @@ const Editor = () => {
     <div className="min-h-screen bg-[#f8f9fa] text-gray-800 flex flex-col h-screen overflow-hidden" onClick={() => setActiveMenu(null)}>
       
       {/* Google Docs Ribbon Header */}
-      <header className="bg-white border-b border-[#dadce0] px-2 sm:px-4 py-2 flex flex-col lg:flex-row lg:items-center justify-between select-none relative z-50 gap-3 lg:gap-0">
+      <header className="bg-white border-b border-[#dadce0] px-2 sm:px-4 py-2 flex flex-col lg:flex-row lg:items-center justify-between relative z-50 gap-3 lg:gap-0">
         <div className="flex items-start lg:items-center gap-2 w-full lg:w-auto">
           {/* Docs Icon */}
           <div 
