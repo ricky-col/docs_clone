@@ -46,6 +46,7 @@ export const signupUser = async (req, res, next) => {
         name: user.name,
         email: user.email,
         accessToken,
+        refreshToken,
       });
     } else {
       res.status(400);
@@ -81,6 +82,7 @@ export const loginUser = async (req, res, next) => {
         name: user.name,
         email: user.email,
         accessToken,
+        refreshToken,
       });
     } else {
       res.status(401);

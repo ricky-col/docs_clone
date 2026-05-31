@@ -33,9 +33,10 @@ API.interceptors.response.use(
     if (error.response?.status === 401 && !originalRequest._retry && !isAuthRequest) {
       originalRequest._retry = true;
       try {
+        const localRefreshToken = localStorage.getItem('refreshToken');
         const { data } = await axios.post(
           `${import.meta.env.VITE_API_URL || 'http://localhost:5001/api'}/auth/refresh`,
-          {},
+          { refreshToken: localRefreshToken },
           { withCredentials: true }
         );
 

@@ -13,6 +13,7 @@ export const useAuthStore = create((set) => ({
       const { data } = await API.post('/auth/signup', { name, email, password });
       localStorage.setItem('user', JSON.stringify({ _id: data._id, name: data.name, email: data.email }));
       localStorage.setItem('token', data.accessToken);
+      if (data.refreshToken) localStorage.setItem('refreshToken', data.refreshToken);
       set({ user: { _id: data._id, name: data.name, email: data.email }, token: data.accessToken, loading: false });
       return true;
     } catch (err) {
@@ -27,6 +28,7 @@ export const useAuthStore = create((set) => ({
       const { data } = await API.post('/auth/login', { email, password });
       localStorage.setItem('user', JSON.stringify({ _id: data._id, name: data.name, email: data.email }));
       localStorage.setItem('token', data.accessToken);
+      if (data.refreshToken) localStorage.setItem('refreshToken', data.refreshToken);
       set({ user: { _id: data._id, name: data.name, email: data.email }, token: data.accessToken, loading: false });
       return true;
     } catch (err) {
@@ -43,6 +45,7 @@ export const useAuthStore = create((set) => ({
     } finally {
       localStorage.removeItem('user');
       localStorage.removeItem('token');
+      localStorage.removeItem('refreshToken');
       set({ user: null, token: null });
     }
   },
