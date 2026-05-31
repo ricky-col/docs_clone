@@ -269,7 +269,7 @@ const Dashboard = () => {
                       title={`Owner: ${doc.owner.name}`}
                     >
                       <div className="h-4 w-4 rounded-full bg-stone-900 flex items-center justify-center text-white font-bold text-[8px]">
-                        {doc.owner.name.charAt(0).toUpperCase()}
+                        {doc.owner?.name?.charAt(0)?.toUpperCase() || '?'}
                       </div>
                       <span className="text-[10px] font-semibold text-stone-600 truncate max-w-[80px]">
                         {isOwner ? 'Me' : doc.owner?.name?.split(' ')[0]}
