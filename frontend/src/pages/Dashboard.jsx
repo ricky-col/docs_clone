@@ -175,7 +175,7 @@ const Dashboard = () => {
           
           <div className="flex flex-col gap-2">
             <h1 className="text-4xl font-bold tracking-tight text-stone-900">
-              {getGreeting()}, <span className="text-stone-500">{user?.name.split(' ')[0]}</span>.
+              {getGreeting()}, <span className="text-stone-500">{user?.name?.split(' ')[0] || 'Friend'}</span>.
             </h1>
             <p className="text-stone-500 text-lg font-sans">
               You have {documents.length} document{documents.length !== 1 ? 's' : ''} in your workspace.
@@ -272,7 +272,7 @@ const Dashboard = () => {
                         {doc.owner.name.charAt(0).toUpperCase()}
                       </div>
                       <span className="text-[10px] font-semibold text-stone-600 truncate max-w-[80px]">
-                        {isOwner ? 'Me' : doc.owner.name.split(' ')[0]}
+                        {isOwner ? 'Me' : doc.owner?.name?.split(' ')[0]}
                       </span>
                     </div>
 
