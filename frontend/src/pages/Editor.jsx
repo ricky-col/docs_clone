@@ -302,7 +302,7 @@ const Editor = () => {
             </div>
 
             {/* Menu Items (Interactive Dropdowns) */}
-            <div className="flex items-center gap-1 text-xs text-gray-500 pl-2 font-medium relative overflow-x-auto scrollbar-hide w-full">
+            <div className="flex items-center gap-1 text-xs text-gray-500 pl-2 font-medium relative flex-wrap w-full">
               {/* FILE MENU */}
               <div className="relative shrink-0">
                 <span 
