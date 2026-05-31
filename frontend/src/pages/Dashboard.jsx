@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import API from '../services/api';
 import Navbar from '../components/Navbar';
@@ -14,13 +14,22 @@ import {
   Clock,
   Loader2,
   X,
-  User as UserIcon,
+  Search,
+  MoreVertical,
+  ChevronRight,
+  FileBox
 } from 'lucide-react';
 
 const Dashboard = () => {
   const [documents, setDocuments] = useState([]);
   const [loading, setLoading] = useState(true);
   const [actionLoading, setActionLoading] = useState(false);
+  
+  // UI Features State
+  const [searchQuery, setSearchQuery] = useState('');
+  const [activeTab, setActiveTab] = useState('all'); // 'all', 'owned', 'shared'
+  const [openDropdownId, setOpenDropdownId] = useState(null);
+
   const { user } = useAuthStore();
   const navigate = useNavigate();
 
@@ -32,6 +41,13 @@ const Dashboard = () => {
   const [renameDocId, setRenameDocId] = useState(null);
   const [renameTitle, setRenameTitle] = useState('');
   const [renameError, setRenameError] = useState(null);
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = () => setOpenDropdownId(null);
+    document.addEventListener('click', handleClickOutside);
+    return () => document.removeEventListener('click', handleClickOutside);
+  }, []);
 
   useEffect(() => {
     fetchDocuments();
@@ -62,6 +78,7 @@ const Dashboard = () => {
 
   const handleDeleteDocument = async (id, e) => {
     e.stopPropagation();
+    setOpenDropdownId(null);
     if (!window.confirm('Are you sure you want to delete this document?')) return;
     setActionLoading(true);
     try {
@@ -76,6 +93,7 @@ const Dashboard = () => {
 
   const handleDuplicateDocument = async (id, e) => {
     e.stopPropagation();
+    setOpenDropdownId(null);
     setActionLoading(true);
     try {
       const { data } = await API.post(`/documents/${id}/duplicate`);
@@ -89,6 +107,7 @@ const Dashboard = () => {
 
   const openShareModal = (doc, e) => {
     e.stopPropagation();
+    setOpenDropdownId(null);
     setShareDocId(doc._id);
     setShareEmail('');
     setShareError(null);
@@ -108,6 +127,7 @@ const Dashboard = () => {
 
   const openRenameModal = (doc, e) => {
     e.stopPropagation();
+    setOpenDropdownId(null);
     setRenameDocId(doc._id);
     setRenameTitle(doc.title);
     setRenameError(null);
@@ -125,115 +145,195 @@ const Dashboard = () => {
     }
   };
 
+  // Helper for greeting
+  const getGreeting = () => {
+    const hour = new Date().getHours();
+    if (hour < 12) return 'Good morning';
+    if (hour < 18) return 'Good afternoon';
+    return 'Good evening';
+  };
+
+  // Filter documents
+  const filteredDocuments = documents.filter((doc) => {
+    const matchesSearch = doc.title.toLowerCase().includes(searchQuery.toLowerCase());
+    const isOwner = doc.owner._id === user._id;
+    
+    let matchesTab = true;
+    if (activeTab === 'owned') matchesTab = isOwner;
+    if (activeTab === 'shared') matchesTab = !isOwner;
+    
+    return matchesSearch && matchesTab;
+  });
+
   return (
-    <div className="min-h-screen bg-[#f8f9fa] text-gray-850 pb-16 flex flex-col font-sans select-none">
+    <div className="min-h-screen bg-[#FDFCF8] text-stone-900 pb-16 flex flex-col font-sans select-none">
       <Navbar />
 
-      {/* Google Docs Template Gallery Bar (Top Ribbon) */}
-      <section className="bg-[#f1f3f4] border-b border-[#dadce0] py-6 px-6">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-sm font-semibold text-gray-700 mb-4">Start a new document</h2>
+      {/* Dynamic Header Section */}
+      <section className="border-b border-stone-200 bg-white">
+        <div className="max-w-6xl mx-auto px-6 py-12 flex flex-col md:flex-row md:items-center justify-between gap-6">
           
-          <div className="flex">
-            {/* Blank Document Card */}
-            <div 
-              onClick={handleCreateDocument}
-              className="flex flex-col gap-2 cursor-pointer group"
-            >
-              <div className="h-36 w-28 bg-white border border-[#dadce0] hover:border-blue-600 hover:shadow-md rounded flex items-center justify-center transition-all">
-                {actionLoading ? (
-                  <Loader2 className="h-8 w-8 animate-spin text-blue-650" />
-                ) : (
-                  <div className="h-12 w-12 rounded-full bg-blue-50 flex items-center justify-center group-hover:bg-blue-100 transition-colors">
-                    <Plus className="h-6 w-6 text-blue-600" />
-                  </div>
-                )}
-              </div>
-              <span className="text-xs font-medium text-gray-800 pl-1 group-hover:text-blue-600 transition-colors">
-                Blank Document
-              </span>
-            </div>
+          <div className="flex flex-col gap-2">
+            <h1 className="text-4xl font-bold tracking-tight text-stone-900">
+              {getGreeting()}, <span className="text-stone-500">{user?.name.split(' ')[0]}</span>.
+            </h1>
+            <p className="text-stone-500 text-lg font-sans">
+              You have {documents.length} document{documents.length !== 1 ? 's' : ''} in your workspace.
+            </p>
           </div>
+
+          <div className="flex items-center gap-4">
+            {/* Search Bar */}
+            <div className="relative w-full md:w-72 font-sans group">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-stone-400 group-focus-within:text-stone-900 transition-colors" />
+              <input
+                type="text"
+                placeholder="Search documents..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full bg-stone-100 border border-transparent focus:border-stone-900 focus:bg-white rounded-full py-3 pl-10 pr-4 text-sm focus:outline-none transition-all placeholder:text-stone-400"
+              />
+            </div>
+            
+            {/* Create Button */}
+            <button
+              onClick={handleCreateDocument}
+              disabled={actionLoading}
+              className="flex items-center gap-2 bg-stone-900 hover:bg-stone-800 text-[#FDFCF8] font-semibold py-3 px-6 rounded-full text-sm transition-all shadow-sm active:scale-95 disabled:opacity-50 shrink-0 font-sans"
+            >
+              {actionLoading ? <Loader2 className="h-5 w-5 animate-spin" /> : <Plus className="h-5 w-5" />}
+              <span>New Document</span>
+            </button>
+          </div>
+
         </div>
       </section>
 
-      {/* Recent Documents Section */}
-      <main className="max-w-6xl w-full mx-auto px-6 mt-8 flex-1">
-        <div className="flex items-center justify-between mb-5">
-          <h2 className="text-sm font-semibold text-gray-700">Recent documents</h2>
+      {/* Main Workspace */}
+      <main className="max-w-6xl w-full mx-auto px-6 mt-10 flex-1 font-sans">
+        
+        {/* Tabs */}
+        <div className="flex items-center gap-6 border-b border-stone-200 mb-8">
+          {['all', 'owned', 'shared'].map((tab) => (
+            <button
+              key={tab}
+              onClick={() => setActiveTab(tab)}
+              className={`pb-3 text-sm font-semibold capitalize transition-colors relative ${
+                activeTab === tab ? 'text-stone-900' : 'text-stone-400 hover:text-stone-600'
+              }`}
+            >
+              {tab === 'all' ? 'All Documents' : tab === 'owned' ? 'Owned by me' : 'Shared with me'}
+              {activeTab === tab && (
+                <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-stone-900 rounded-t-full" />
+              )}
+            </button>
+          ))}
         </div>
 
+        {/* Content */}
         {loading ? (
-          <div className="flex flex-col items-center justify-center py-20 gap-3 text-gray-400">
-            <Loader2 className="h-7 w-7 animate-spin text-blue-650" />
-            <span className="text-xs font-semibold">Loading documents...</span>
+          <div className="flex flex-col items-center justify-center py-32 gap-4 text-stone-400">
+            <Loader2 className="h-8 w-8 animate-spin text-stone-900" />
+            <span className="text-sm font-semibold tracking-wide">Loading workspace...</span>
           </div>
-        ) : documents.length === 0 ? (
-          <div className="text-center py-16 bg-white border border-[#dadce0] rounded-xl shadow-sm">
-            <FileText className="h-10 w-10 mx-auto text-gray-300 mb-2" />
-            <h3 className="text-sm font-bold text-gray-700">No documents yet</h3>
-            <p className="text-gray-450 text-xs mt-0.5">Click the "Blank Document" block above to create one.</p>
+        ) : filteredDocuments.length === 0 ? (
+          <div className="flex flex-col items-center justify-center py-32 bg-stone-50 border border-stone-200 rounded-2xl border-dashed">
+            <div className="bg-white p-4 rounded-full shadow-sm mb-4">
+              <FileBox className="h-8 w-8 text-stone-300" />
+            </div>
+            <h3 className="text-lg font-bold text-stone-900">No documents found</h3>
+            <p className="text-stone-500 text-sm mt-1 max-w-sm text-center">
+              {searchQuery 
+                ? "We couldn't find anything matching your search." 
+                : "Your workspace is empty. Create a new document to get started."}
+            </p>
           </div>
         ) : (
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
-            {documents.map((doc) => {
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {filteredDocuments.map((doc) => {
               const isOwner = doc.owner._id === user._id;
+              
               return (
                 <div
                   key={doc._id}
                   onClick={() => navigate(`/documents/${doc._id}`)}
-                  className="bg-white border border-[#dadce0] hover:border-blue-600 hover:shadow-md rounded-lg overflow-hidden cursor-pointer transition-all flex flex-col group"
+                  className="group relative bg-white border border-stone-200 hover:border-stone-900 hover:shadow-xl rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 flex flex-col hover:-translate-y-1"
                 >
-                  {/* Doc Preview Placeholder */}
-                  <div className="h-32 bg-[#f8f9fa] border-b border-[#dadce0] flex items-center justify-center text-blue-600 group-hover:bg-[#f1f3f4] transition-colors">
-                    <FileText className="h-10 w-10 opacity-70" />
-                  </div>
-
-                  {/* Metadata block */}
-                  <div className="p-3 flex flex-col flex-1">
-                    <h3 className="text-xs font-bold text-gray-800 truncate mb-1" title={doc.title}>
-                      {doc.title}
-                    </h3>
+                  {/* Card Preview Background */}
+                  <div className="h-36 bg-stone-50 border-b border-stone-100 flex items-center justify-center group-hover:bg-stone-100 transition-colors relative">
+                    <FileText className="h-12 w-12 text-stone-200 group-hover:text-stone-300 transition-colors" />
                     
-                    <div className="flex items-center gap-1.5 text-[10px] text-gray-450 mt-auto">
-                      <Clock className="h-3 w-3" />
-                      <span>{new Date(doc.updatedAt).toLocaleDateString()}</span>
+                    {/* Floating Avatar Badge */}
+                    <div 
+                      className="absolute bottom-3 left-4 flex items-center gap-1.5 bg-white/80 backdrop-blur-md px-2 py-1 rounded-full shadow-sm border border-stone-200"
+                      title={`Owner: ${doc.owner.name}`}
+                    >
+                      <div className="h-4 w-4 rounded-full bg-stone-900 flex items-center justify-center text-white font-bold text-[8px]">
+                        {doc.owner.name.charAt(0).toUpperCase()}
+                      </div>
+                      <span className="text-[10px] font-semibold text-stone-600 truncate max-w-[80px]">
+                        {isOwner ? 'Me' : doc.owner.name.split(' ')[0]}
+                      </span>
                     </div>
 
-                    {/* Action buttons */}
-                    <div className="border-t border-[#dadce0] mt-2.5 pt-2 flex items-center justify-end gap-2 text-gray-400">
-                      <button
-                        onClick={(e) => openRenameModal(doc, e)}
-                        title="Rename"
-                        className="p-1 hover:bg-gray-150 hover:text-gray-700 rounded transition-colors cursor-pointer"
+                    {/* Collaborator Count Badge */}
+                    {doc.collaborators.length > 0 && (
+                      <div 
+                        className="absolute bottom-3 right-4 flex items-center gap-1 bg-white/80 backdrop-blur-md px-2 py-1 rounded-full shadow-sm border border-stone-200 text-[10px] font-semibold text-stone-600"
+                        title={`${doc.collaborators.length} collaborators`}
                       >
-                        <Edit3 className="h-3.5 w-3.5" />
-                      </button>
-                      <button
-                        onClick={(e) => handleDuplicateDocument(doc._id, e)}
-                        title="Duplicate"
-                        className="p-1 hover:bg-gray-150 hover:text-gray-700 rounded transition-colors cursor-pointer"
-                      >
-                        <Copy className="h-3.5 w-3.5" />
-                      </button>
-                      {isOwner && (
-                        <>
-                          <button
-                            onClick={(e) => openShareModal(doc, e)}
-                            title="Share"
-                            className="p-1 hover:bg-gray-150 hover:text-blue-600 rounded transition-colors cursor-pointer"
-                          >
-                            <Share2 className="h-3.5 w-3.5" />
-                          </button>
-                          <button
-                            onClick={(e) => handleDeleteDocument(doc._id, e)}
-                            title="Delete"
-                            className="p-1 hover:bg-red-50 hover:text-red-650 rounded transition-colors cursor-pointer"
-                          >
-                            <Trash2 className="h-3.5 w-3.5" />
-                          </button>
-                        </>
-                      )}
+                        <Users className="h-3 w-3" />
+                        {doc.collaborators.length}
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Card Content */}
+                  <div className="p-4 flex flex-col flex-1">
+                    <div className="flex items-start justify-between gap-2 mb-2">
+                      <h3 className="text-base font-bold text-stone-900 truncate flex-1" title={doc.title}>
+                        {doc.title}
+                      </h3>
+                      
+                      {/* Dropdown Action Menu */}
+                      <div className="relative">
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setOpenDropdownId(openDropdownId === doc._id ? null : doc._id);
+                          }}
+                          className="p-1 hover:bg-stone-100 rounded-full text-stone-400 hover:text-stone-900 transition-colors opacity-0 group-hover:opacity-100"
+                        >
+                          <MoreVertical className="h-4 w-4" />
+                        </button>
+                        
+                        {openDropdownId === doc._id && (
+                          <div className="absolute right-0 top-full mt-1 w-40 bg-white border border-stone-200 rounded-xl shadow-xl py-1.5 z-50 text-stone-700 animate-in fade-in slide-in-from-top-2 text-sm font-medium">
+                            <div onClick={(e) => openRenameModal(doc, e)} className="flex items-center px-3 py-2 hover:bg-stone-50 cursor-pointer">
+                              <Edit3 className="h-4 w-4 mr-2.5 text-stone-400" /> Rename
+                            </div>
+                            <div onClick={(e) => handleDuplicateDocument(doc._id, e)} className="flex items-center px-3 py-2 hover:bg-stone-50 cursor-pointer">
+                              <Copy className="h-4 w-4 mr-2.5 text-stone-400" /> Duplicate
+                            </div>
+                            {isOwner && (
+                              <>
+                                <div onClick={(e) => openShareModal(doc, e)} className="flex items-center px-3 py-2 hover:bg-stone-50 cursor-pointer">
+                                  <Share2 className="h-4 w-4 mr-2.5 text-stone-400" /> Share
+                                </div>
+                                <hr className="border-stone-100 my-1" />
+                                <div onClick={(e) => handleDeleteDocument(doc._id, e)} className="flex items-center px-3 py-2 hover:bg-red-50 text-red-600 cursor-pointer">
+                                  <Trash2 className="h-4 w-4 mr-2.5 text-red-500" /> Delete
+                                </div>
+                              </>
+                            )}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-center gap-1.5 text-xs text-stone-500 mt-auto pt-2">
+                      <Clock className="h-3.5 w-3.5" />
+                      <span>Updated {new Date(doc.updatedAt).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' })}</span>
                     </div>
                   </div>
                 </div>
@@ -245,33 +345,33 @@ const Dashboard = () => {
 
       {/* RENAME MODAL */}
       {renameDocId && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center px-4 bg-gray-900/50 backdrop-blur-sm">
-          <div className="bg-white border border-[#dadce0] w-full max-w-sm p-6 rounded-xl shadow-2xl relative text-gray-800">
+        <div className="fixed inset-0 z-50 flex items-center justify-center px-4 bg-stone-900/40 backdrop-blur-sm animate-in fade-in">
+          <div className="bg-white w-full max-w-sm p-6 rounded-2xl shadow-2xl relative font-sans">
             <button
               onClick={() => setRenameDocId(null)}
-              className="absolute right-4 top-4 text-gray-400 hover:text-gray-700 transition-colors cursor-pointer"
+              className="absolute right-4 top-4 text-stone-400 hover:text-stone-900 transition-colors"
             >
-              <X className="h-4 w-4" />
+              <X className="h-5 w-5" />
             </button>
-
-            <h2 className="text-base font-bold text-gray-900 mb-4">Rename Document</h2>
-
-            {renameError && <p className="mb-3.5 text-xs text-red-600">{renameError}</p>}
-
+            <h2 className="text-xl font-bold text-stone-900 mb-4">Rename Document</h2>
+            {renameError && <p className="mb-3 text-sm text-red-600">{renameError}</p>}
             <form onSubmit={handleRenameSubmit} className="space-y-4">
               <input
                 type="text"
-                className="w-full bg-[#f8f9fa] border border-[#dadce0] rounded-lg py-2 px-3 text-sm focus:outline-none focus:ring-1 focus:ring-blue-600"
+                className="w-full bg-stone-50 border border-stone-200 rounded-xl py-3 px-4 text-sm focus:outline-none focus:ring-1 focus:ring-stone-900 focus:bg-white transition-all"
                 value={renameTitle}
                 onChange={(e) => setRenameTitle(e.target.value)}
+                autoFocus
                 required
               />
-              <button
-                type="submit"
-                className="w-full bg-blue-600 hover:bg-blue-755 text-white font-semibold py-2 rounded-lg text-sm active:scale-95 transition-all cursor-pointer shadow-sm"
-              >
-                Save
-              </button>
+              <div className="flex justify-end gap-2 pt-2">
+                <button type="button" onClick={() => setRenameDocId(null)} className="px-4 py-2 text-sm font-semibold text-stone-500 hover:text-stone-900 transition-colors">
+                  Cancel
+                </button>
+                <button type="submit" className="bg-stone-900 hover:bg-stone-800 text-white font-semibold py-2 px-6 rounded-xl text-sm transition-all active:scale-95 shadow-sm">
+                  Save
+                </button>
+              </div>
             </form>
           </div>
         </div>
@@ -279,37 +379,37 @@ const Dashboard = () => {
 
       {/* SHARE MODAL */}
       {shareDocId && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center px-4 bg-gray-900/50 backdrop-blur-sm">
-          <div className="bg-white border border-[#dadce0] w-full max-w-sm p-6 rounded-xl shadow-2xl relative text-gray-800">
+        <div className="fixed inset-0 z-50 flex items-center justify-center px-4 bg-stone-900/40 backdrop-blur-sm animate-in fade-in">
+          <div className="bg-white w-full max-w-sm p-6 rounded-2xl shadow-2xl relative font-sans">
             <button
               onClick={() => setShareDocId(null)}
-              className="absolute right-4 top-4 text-gray-400 hover:text-gray-700 transition-colors cursor-pointer"
+              className="absolute right-4 top-4 text-stone-400 hover:text-stone-900 transition-colors"
             >
-              <X className="h-4 w-4" />
+              <X className="h-5 w-5" />
             </button>
-
-            <h2 className="text-base font-bold text-gray-900 mb-1">Share Document</h2>
-            <p className="text-[11px] text-gray-450 mb-4">
-              Type the email address of the user you want to share this document with.
+            <h2 className="text-xl font-bold text-stone-900 mb-1">Share Document</h2>
+            <p className="text-sm text-stone-500 mb-5">
+              Enter the email address of the person you'd like to collaborate with.
             </p>
-
-            {shareError && <p className="mb-3.5 text-xs text-red-600">{shareError}</p>}
-
+            {shareError && <p className="mb-3 text-sm text-red-600">{shareError}</p>}
             <form onSubmit={handleShareSubmit} className="space-y-4">
               <input
                 type="email"
                 placeholder="colleague@domain.com"
-                className="w-full bg-[#f8f9fa] border border-[#dadce0] rounded-lg py-2 px-3 text-sm focus:outline-none focus:ring-1 focus:ring-blue-600"
+                className="w-full bg-stone-50 border border-stone-200 rounded-xl py-3 px-4 text-sm focus:outline-none focus:ring-1 focus:ring-stone-900 focus:bg-white transition-all"
                 value={shareEmail}
                 onChange={(e) => setShareEmail(e.target.value)}
+                autoFocus
                 required
               />
-              <button
-                type="submit"
-                className="w-full bg-blue-600 hover:bg-blue-755 text-white font-semibold py-2 rounded-lg text-sm active:scale-95 transition-all cursor-pointer shadow-sm"
-              >
-                Share
-              </button>
+              <div className="flex justify-end gap-2 pt-2">
+                <button type="button" onClick={() => setShareDocId(null)} className="px-4 py-2 text-sm font-semibold text-stone-500 hover:text-stone-900 transition-colors">
+                  Cancel
+                </button>
+                <button type="submit" className="bg-stone-900 hover:bg-stone-800 text-white font-semibold py-2 px-6 rounded-xl text-sm transition-all active:scale-95 shadow-sm flex items-center gap-2">
+                  <Share2 className="h-4 w-4" /> Share
+                </button>
+              </div>
             </form>
           </div>
         </div>
