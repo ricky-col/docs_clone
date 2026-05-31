@@ -196,7 +196,7 @@ export const shareDocument = async (req, res, next) => {
       throw new Error('You cannot share the document with yourself (owner)');
     }
 
-    if (doc.collaborators.includes(userToShare._id)) {
+    if (doc.collaborators.some(c => c.toString() === userToShare._id.toString())) {
       res.status(400);
       throw new Error('User is already a collaborator');
     }
@@ -233,7 +233,7 @@ export const joinViaInvite = async (req, res, next) => {
 
     // Check if already a collaborator or owner
     const isOwner = doc.owner.toString() === req.user._id.toString();
-    const isCollaborator = doc.collaborators.includes(req.user._id);
+    const isCollaborator = doc.collaborators.some(c => c.toString() === req.user._id.toString());
 
     if (isOwner || isCollaborator) {
       return res.json({ message: 'Already a collaborator', documentId: doc._id });
