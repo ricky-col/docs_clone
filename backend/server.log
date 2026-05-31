@@ -1,0 +1,190 @@
+
+> collab-doc-editor-backend@1.0.0 dev
+> nodemon src/server.js
+
+[33m[nodemon] 3.1.14[39m
+[33m[nodemon] to restart at any time, enter `rs`[39m
+[33m[nodemon] watching path(s): *.*[39m
+[33m[nodemon] watching extensions: js,mjs,cjs,json[39m
+[32m[nodemon] starting `node src/server.js`[39m
+--- authController loaded ---
+Server running in development mode on port 5001
+MongoDB Connected: localhost
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node src/server.js`[39m
+--- authController loaded ---
+Server running in development mode on port 5001
+MongoDB Connected: localhost
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node src/server.js`[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node src/server.js`[39m
+--- authController loaded ---
+Server running in development mode on port 5001
+MongoDB Connected: localhost
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node src/server.js`[39m
+--- authController loaded ---
+Server running in development mode on port 5001
+MongoDB Connected: localhost
+Authorization Header: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhMTlkMDcyOWUxZjYzZGNiMjY2ZDNiMSIsImlhdCI6MTc4MDE1Mjc0NywiZXhwIjoxNzgwMTUzNjQ3fQ.ckcleRsJzckPu9dRbdmO2twFXA3_iUhhOsB6o8I4sXI
+authMiddleware verifying with secret length: 32 ends with: 98765
+JWT verification error: jwt expired
+Authorization Header: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhMTlkMDcyOWUxZjYzZGNiMjY2ZDNiMSIsImlhdCI6MTc4MDE1Mjc0NywiZXhwIjoxNzgwMTUzNjQ3fQ.ckcleRsJzckPu9dRbdmO2twFXA3_iUhhOsB6o8I4sXI
+authMiddleware verifying with secret length: 32 ends with: 98765
+JWT verification error: jwt expired
+Authorization Header: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhMTlkMDcyOWUxZjYzZGNiMjY2ZDNiMSIsImlhdCI6MTc4MDE1Mzk0MCwiZXhwIjoxNzgwMTU0ODQwfQ.o9axRcnCCYEJpowGvYqglbr38U1iDq6WNoG__e_sAx4
+authMiddleware verifying with secret length: 32 ends with: 98765
+Authorization Header: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhMTlkMDcyOWUxZjYzZGNiMjY2ZDNiMSIsImlhdCI6MTc4MDE1Mzk0MCwiZXhwIjoxNzgwMTU0ODQwfQ.o9axRcnCCYEJpowGvYqglbr38U1iDq6WNoG__e_sAx4
+authMiddleware verifying with secret length: 32 ends with: 98765
+Authorization Header: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhMTlkMDcyOWUxZjYzZGNiMjY2ZDNiMSIsImlhdCI6MTc4MDE1Mzk0MCwiZXhwIjoxNzgwMTU0ODQwfQ.o9axRcnCCYEJpowGvYqglbr38U1iDq6WNoG__e_sAx4
+authMiddleware verifying with secret length: 32 ends with: 98765
+Socket Connected: User sid (63kmJ3fKLMymrnarAAAC)
+Authorization Header: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhMTlkMDcyOWUxZjYzZGNiMjY2ZDNiMSIsImlhdCI6MTc4MDE1Mzk0MCwiZXhwIjoxNzgwMTU0ODQwfQ.o9axRcnCCYEJpowGvYqglbr38U1iDq6WNoG__e_sAx4
+authMiddleware verifying with secret length: 32 ends with: 98765
+Socket Disconnected: User sid (63kmJ3fKLMymrnarAAAC)
+Authorization Header: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhMTlkMDcyOWUxZjYzZGNiMjY2ZDNiMSIsImlhdCI6MTc4MDE1Mzk0MCwiZXhwIjoxNzgwMTU0ODQwfQ.o9axRcnCCYEJpowGvYqglbr38U1iDq6WNoG__e_sAx4
+authMiddleware verifying with secret length: 32 ends with: 98765
+Authorization Header: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhMTlkMDcyOWUxZjYzZGNiMjY2ZDNiMSIsImlhdCI6MTc4MDE1Mzk0MCwiZXhwIjoxNzgwMTU0ODQwfQ.o9axRcnCCYEJpowGvYqglbr38U1iDq6WNoG__e_sAx4
+authMiddleware verifying with secret length: 32 ends with: 98765
+Authorization Header: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhMTlkMDcyOWUxZjYzZGNiMjY2ZDNiMSIsImlhdCI6MTc4MDE1Mzk0MCwiZXhwIjoxNzgwMTU0ODQwfQ.o9axRcnCCYEJpowGvYqglbr38U1iDq6WNoG__e_sAx4
+authMiddleware verifying with secret length: 32 ends with: 98765
+Socket Connected: User sid (avkVbR7kpvF46OAxAAAF)
+Authorization Header: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhMTlkMDcyOWUxZjYzZGNiMjY2ZDNiMSIsImlhdCI6MTc4MDE1Mzk0MCwiZXhwIjoxNzgwMTU0ODQwfQ.o9axRcnCCYEJpowGvYqglbr38U1iDq6WNoG__e_sAx4
+authMiddleware verifying with secret length: 32 ends with: 98765
+Authorization Header: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhMWFmN2Q5ZDhlMWQ1ZWFiZWY2ZDM5YyIsImlhdCI6MTc4MDE1NDE0MywiZXhwIjoxNzgwMTU1MDQzfQ.--ZVCy4rKg5EUKfbbmQz8ZMCuvwJc1sH9SyTB0qwG9c
+authMiddleware verifying with secret length: 32 ends with: 98765
+Authorization Header: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhMWFmN2Q5ZDhlMWQ1ZWFiZWY2ZDM5YyIsImlhdCI6MTc4MDE1NDE0MywiZXhwIjoxNzgwMTU1MDQzfQ.--ZVCy4rKg5EUKfbbmQz8ZMCuvwJc1sH9SyTB0qwG9c
+authMiddleware verifying with secret length: 32 ends with: 98765
+Authorization Header: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhMWFmN2Q5ZDhlMWQ1ZWFiZWY2ZDM5YyIsImlhdCI6MTc4MDE1NDE0MywiZXhwIjoxNzgwMTU1MDQzfQ.--ZVCy4rKg5EUKfbbmQz8ZMCuvwJc1sH9SyTB0qwG9c
+authMiddleware verifying with secret length: 32 ends with: 98765
+Authorization Header: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhMWFmN2Q5ZDhlMWQ1ZWFiZWY2ZDM5YyIsImlhdCI6MTc4MDE1NDE0MywiZXhwIjoxNzgwMTU1MDQzfQ.--ZVCy4rKg5EUKfbbmQz8ZMCuvwJc1sH9SyTB0qwG9c
+authMiddleware verifying with secret length: 32 ends with: 98765
+Socket Connected: User hemanth (jlW8YDDq0uMw-OyVAAAI)
+Socket Disconnected: User hemanth (jlW8YDDq0uMw-OyVAAAI)
+Authorization Header: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhMWFmN2Q5ZDhlMWQ1ZWFiZWY2ZDM5YyIsImlhdCI6MTc4MDE1NDE0MywiZXhwIjoxNzgwMTU1MDQzfQ.--ZVCy4rKg5EUKfbbmQz8ZMCuvwJc1sH9SyTB0qwG9c
+authMiddleware verifying with secret length: 32 ends with: 98765
+Authorization Header: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhMWFmN2Q5ZDhlMWQ1ZWFiZWY2ZDM5YyIsImlhdCI6MTc4MDE1NDE0MywiZXhwIjoxNzgwMTU1MDQzfQ.--ZVCy4rKg5EUKfbbmQz8ZMCuvwJc1sH9SyTB0qwG9c
+authMiddleware verifying with secret length: 32 ends with: 98765
+Authorization Header: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhMWFmN2Q5ZDhlMWQ1ZWFiZWY2ZDM5YyIsImlhdCI6MTc4MDE1NDE0MywiZXhwIjoxNzgwMTU1MDQzfQ.--ZVCy4rKg5EUKfbbmQz8ZMCuvwJc1sH9SyTB0qwG9c
+authMiddleware verifying with secret length: 32 ends with: 98765
+Authorization Header: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhMWFmN2Q5ZDhlMWQ1ZWFiZWY2ZDM5YyIsImlhdCI6MTc4MDE1NDE0MywiZXhwIjoxNzgwMTU1MDQzfQ.--ZVCy4rKg5EUKfbbmQz8ZMCuvwJc1sH9SyTB0qwG9c
+authMiddleware verifying with secret length: 32 ends with: 98765
+Socket Connected: User hemanth (iQ5OrDddj_Z0wce_AAAL)
+Authorization Header: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhMWFmN2Q5ZDhlMWQ1ZWFiZWY2ZDM5YyIsImlhdCI6MTc4MDE1NDE0MywiZXhwIjoxNzgwMTU1MDQzfQ.--ZVCy4rKg5EUKfbbmQz8ZMCuvwJc1sH9SyTB0qwG9c
+authMiddleware verifying with secret length: 32 ends with: 98765
+Authorization Header: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhMWFmN2Q5ZDhlMWQ1ZWFiZWY2ZDM5YyIsImlhdCI6MTc4MDE1NDE0MywiZXhwIjoxNzgwMTU1MDQzfQ.--ZVCy4rKg5EUKfbbmQz8ZMCuvwJc1sH9SyTB0qwG9c
+authMiddleware verifying with secret length: 32 ends with: 98765
+Socket Disconnected: User sid (avkVbR7kpvF46OAxAAAF)
+Authorization Header: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhMTlkMDcyOWUxZjYzZGNiMjY2ZDNiMSIsImlhdCI6MTc4MDE1Mzk0MCwiZXhwIjoxNzgwMTU0ODQwfQ.o9axRcnCCYEJpowGvYqglbr38U1iDq6WNoG__e_sAx4
+authMiddleware verifying with secret length: 32 ends with: 98765
+Authorization Header: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhMTlkMDcyOWUxZjYzZGNiMjY2ZDNiMSIsImlhdCI6MTc4MDE1Mzk0MCwiZXhwIjoxNzgwMTU0ODQwfQ.o9axRcnCCYEJpowGvYqglbr38U1iDq6WNoG__e_sAx4
+authMiddleware verifying with secret length: 32 ends with: 98765
+Authorization Header: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhMTlkMDcyOWUxZjYzZGNiMjY2ZDNiMSIsImlhdCI6MTc4MDE1Mzk0MCwiZXhwIjoxNzgwMTU0ODQwfQ.o9axRcnCCYEJpowGvYqglbr38U1iDq6WNoG__e_sAx4
+authMiddleware verifying with secret length: 32 ends with: 98765
+Socket Disconnected: User hemanth (iQ5OrDddj_Z0wce_AAAL)
+Authorization Header: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhMWFmN2Q5ZDhlMWQ1ZWFiZWY2ZDM5YyIsImlhdCI6MTc4MDE1NDE0MywiZXhwIjoxNzgwMTU1MDQzfQ.--ZVCy4rKg5EUKfbbmQz8ZMCuvwJc1sH9SyTB0qwG9c
+authMiddleware verifying with secret length: 32 ends with: 98765
+Socket Connected: User hemanth (_fD5oZvfiV24a7ybAAAO)
+Authorization Header: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhMWFmN2Q5ZDhlMWQ1ZWFiZWY2ZDM5YyIsImlhdCI6MTc4MDE1NDE0MywiZXhwIjoxNzgwMTU1MDQzfQ.--ZVCy4rKg5EUKfbbmQz8ZMCuvwJc1sH9SyTB0qwG9c
+authMiddleware verifying with secret length: 32 ends with: 98765
+Authorization Header: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhMTljZjQ5ODZlNzViOTM5NGFiY2U3ZCIsImlhdCI6MTc4MDE1NDgwOCwiZXhwIjoxNzgwMTU1NzA4fQ.V157I0z9O4ZRRelbWo447BJ8raj54syrKy5LNkrBEfI
+authMiddleware verifying with secret length: 32 ends with: 98765
+Authorization Header: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhMTljZjQ5ODZlNzViOTM5NGFiY2U3ZCIsImlhdCI6MTc4MDE1NDgwOCwiZXhwIjoxNzgwMTU1NzA4fQ.V157I0z9O4ZRRelbWo447BJ8raj54syrKy5LNkrBEfI
+authMiddleware verifying with secret length: 32 ends with: 98765
+Authorization Header: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhMTljZjQ5ODZlNzViOTM5NGFiY2U3ZCIsImlhdCI6MTc4MDE1NDgwOCwiZXhwIjoxNzgwMTU1NzA4fQ.V157I0z9O4ZRRelbWo447BJ8raj54syrKy5LNkrBEfI
+authMiddleware verifying with secret length: 32 ends with: 98765
+Socket Disconnected: User hemanth (_fD5oZvfiV24a7ybAAAO)
+Authorization Header: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhMWFmN2Q5ZDhlMWQ1ZWFiZWY2ZDM5YyIsImlhdCI6MTc4MDE1NDE0MywiZXhwIjoxNzgwMTU1MDQzfQ.--ZVCy4rKg5EUKfbbmQz8ZMCuvwJc1sH9SyTB0qwG9c
+authMiddleware verifying with secret length: 32 ends with: 98765
+JWT verification error: jwt expired
+Authorization Header: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhMWFmN2Q5ZDhlMWQ1ZWFiZWY2ZDM5YyIsImlhdCI6MTc4MDE1NDE0MywiZXhwIjoxNzgwMTU1MDQzfQ.--ZVCy4rKg5EUKfbbmQz8ZMCuvwJc1sH9SyTB0qwG9c
+authMiddleware verifying with secret length: 32 ends with: 98765
+JWT verification error: jwt expired
+Authorization Header: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhMWFmN2Q5ZDhlMWQ1ZWFiZWY2ZDM5YyIsImlhdCI6MTc4MDE1NTI3OCwiZXhwIjoxNzgwMTU2MTc4fQ.f8hQDZSxQLXn_bFcWv8_G-u0XsFJE3dClT4g-Dx7xrg
+authMiddleware verifying with secret length: 32 ends with: 98765
+Authorization Header: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhMWFmN2Q5ZDhlMWQ1ZWFiZWY2ZDM5YyIsImlhdCI6MTc4MDE1NTI3OCwiZXhwIjoxNzgwMTU2MTc4fQ.f8hQDZSxQLXn_bFcWv8_G-u0XsFJE3dClT4g-Dx7xrg
+authMiddleware verifying with secret length: 32 ends with: 98765
+Authorization Header: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhMWFmN2Q5ZDhlMWQ1ZWFiZWY2ZDM5YyIsImlhdCI6MTc4MDE1NTI3OCwiZXhwIjoxNzgwMTU2MTc4fQ.f8hQDZSxQLXn_bFcWv8_G-u0XsFJE3dClT4g-Dx7xrg
+authMiddleware verifying with secret length: 32 ends with: 98765
+Authorization Header: undefined
+Authorization Header: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhMTljZjQ5ODZlNzViOTM5NGFiY2U3ZCIsImlhdCI6MTc4MDE2OTgxMCwiZXhwIjoxNzgwMTcwNzEwfQ.Kx3gNyc3Bf_DjQvQhUgjJ72kvAr_jvgYCGEwLH91ZOM
+authMiddleware verifying with secret length: 32 ends with: 98765
+Authorization Header: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhMTljZjQ5ODZlNzViOTM5NGFiY2U3ZCIsImlhdCI6MTc4MDE2OTgxMCwiZXhwIjoxNzgwMTcwNzEwfQ.Kx3gNyc3Bf_DjQvQhUgjJ72kvAr_jvgYCGEwLH91ZOM
+authMiddleware verifying with secret length: 32 ends with: 98765
+Authorization Header: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhMTljZjQ5ODZlNzViOTM5NGFiY2U3ZCIsImlhdCI6MTc4MDE2OTgxMCwiZXhwIjoxNzgwMTcwNzEwfQ.Kx3gNyc3Bf_DjQvQhUgjJ72kvAr_jvgYCGEwLH91ZOM
+authMiddleware verifying with secret length: 32 ends with: 98765
+[31m[nodemon] app crashed - waiting for file changes before starting...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node src/server.js`[39m
+--- authController loaded ---
+node:events:486
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE: address already in use :::5001
+    at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+    at listenInCluster (node:net:1997:12)
+    at Server.listen (node:net:2102:7)
+    at file:///Users/revanthyadav/proj/backend/src/server.js:77:8
+    at ModuleJob.run (node:internal/modules/esm/module_job:430:25)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:655:26)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)
+Emitted 'error' event on Server instance at:
+    at emitErrorNT (node:net:1976:8)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 5001
+}
+
+Node.js v25.5.0
+[31m[nodemon] app crashed - waiting for file changes before starting...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node src/server.js`[39m
+--- authController loaded ---
+node:events:486
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE: address already in use :::5001
+    at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+    at listenInCluster (node:net:1997:12)
+    at Server.listen (node:net:2102:7)
+    at file:///Users/revanthyadav/proj/backend/src/server.js:77:8
+    at ModuleJob.run (node:internal/modules/esm/module_job:430:25)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:655:26)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)
+Emitted 'error' event on Server instance at:
+    at emitErrorNT (node:net:1976:8)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 5001
+}
+
+Node.js v25.5.0
+[31m[nodemon] app crashed - waiting for file changes before starting...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node src/server.js`[39m
+--- authController loaded ---
+Server running in development mode on port 5001
+MongoDB Connected: ac-7ozw5vw-shard-00-02.kpm7dcx.mongodb.net
+Authorization Header: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhMWMzMzA0YTdlNjMwMTMwMzgxMjQ5MyIsImlhdCI6MTc4MDIzMjk2NCwiZXhwIjoxNzgwMjMzODY0fQ.qas1ikUxFQAWUPhaNUeO75qA9io7_kFsemPhE9Ga_hs
+authMiddleware verifying with secret length: 32 ends with: 98765
+Authorization Header: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhMWMzMzA0YTdlNjMwMTMwMzgxMjQ5MyIsImlhdCI6MTc4MDIzMjk2NCwiZXhwIjoxNzgwMjMzODY0fQ.qas1ikUxFQAWUPhaNUeO75qA9io7_kFsemPhE9Ga_hs
+authMiddleware verifying with secret length: 32 ends with: 98765
+Authorization Header: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhMWMzMzA0YTdlNjMwMTMwMzgxMjQ5MyIsImlhdCI6MTc4MDIzMjk2NCwiZXhwIjoxNzgwMjMzODY0fQ.qas1ikUxFQAWUPhaNUeO75qA9io7_kFsemPhE9Ga_hs
+authMiddleware verifying with secret length: 32 ends with: 98765
+Authorization Header: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhMWMzMzA0YTdlNjMwMTMwMzgxMjQ5MyIsImlhdCI6MTc4MDIzMjk2NCwiZXhwIjoxNzgwMjMzODY0fQ.qas1ikUxFQAWUPhaNUeO75qA9io7_kFsemPhE9Ga_hs
+authMiddleware verifying with secret length: 32 ends with: 98765
+Socket Connected: User ricky (62j7EuFMqCMaUptpAAAC)
+Authorization Header: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhMWMzMzA0YTdlNjMwMTMwMzgxMjQ5MyIsImlhdCI6MTc4MDIzMjk2NCwiZXhwIjoxNzgwMjMzODY0fQ.qas1ikUxFQAWUPhaNUeO75qA9io7_kFsemPhE9Ga_hs
+authMiddleware verifying with secret length: 32 ends with: 98765
+Socket Disconnected: User ricky (62j7EuFMqCMaUptpAAAC)
