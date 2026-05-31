@@ -106,7 +106,7 @@ const CollaboratorPanel = ({
                 >
                   <div className="flex items-center gap-2 truncate">
                     <div className={`h-7 w-7 rounded-full ${colorClass} flex items-center justify-center text-white font-bold text-[11px] flex-shrink-0`}>
-                      {collab.name.charAt(0).toUpperCase()}
+                      {collab?.name?.charAt(0)?.toUpperCase() || '?'}
                     </div>
                     <div className="truncate">
                       <h4 className="text-xs font-semibold text-gray-700 truncate">{collab.name}</h4>
@@ -140,7 +140,7 @@ const CollaboratorPanel = ({
           {docDetails?.owner && (
             <div className="flex items-center gap-2">
               <div className="h-6 w-6 rounded-full bg-gray-200 text-gray-700 font-bold text-[10px] flex items-center justify-center flex-shrink-0">
-                {docDetails.owner.name.charAt(0).toUpperCase()}
+                {docDetails?.owner?.name?.charAt(0)?.toUpperCase() || '?'}
               </div>
               <div className="truncate flex-grow">
                 <p className="text-xs font-medium text-gray-800 truncate">
@@ -155,7 +155,7 @@ const CollaboratorPanel = ({
           {docDetails?.collaborators?.map((collab) => (
             <div key={collab.email} className="flex items-center gap-2">
               <div className="h-6 w-6 rounded-full bg-gray-100 text-gray-600 font-medium text-[10px] flex items-center justify-center flex-shrink-0">
-                {collab.name.charAt(0).toUpperCase()}
+                {collab?.name?.charAt(0)?.toUpperCase() || '?'}
               </div>
               <div className="truncate flex-grow">
                 <p className="text-xs text-gray-700 truncate">{collab.name}</p>

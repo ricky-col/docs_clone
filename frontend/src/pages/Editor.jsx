@@ -511,7 +511,7 @@ const Editor = () => {
                   index % 3 === 0 ? 'bg-blue-500' : index % 3 === 1 ? 'bg-emerald-500' : 'bg-purple-500'
                 }`}
               >
-                {collab.name.charAt(0).toUpperCase()}
+                {collab?.name?.charAt(0)?.toUpperCase() || '?'}
               </div>
             ))}
             {activeCollaborators.length > 3 && (

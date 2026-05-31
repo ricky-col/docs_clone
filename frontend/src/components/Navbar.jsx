@@ -27,7 +27,7 @@ const Navbar = () => {
         <div className="flex items-center gap-2 sm:gap-4">
           <div className="flex items-center gap-2 bg-gray-100 border border-gray-200 rounded-full py-1.5 px-2 sm:px-3">
             <div className="h-6 w-6 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-bold text-xs">
-              {user.name.charAt(0).toUpperCase()}
+              {user?.name?.charAt(0)?.toUpperCase() || '?'}
             </div>
             <span className="text-xs font-semibold text-gray-700 hidden sm:block">{user.name}</span>
           </div>
