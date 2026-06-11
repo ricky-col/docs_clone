@@ -46,7 +46,7 @@ const CustomToolbar = ({ quill, activeFormats }) => {
     quill.focus();
   };
 
-  const ToolbarButton = ({ icon: Icon, format, value = true, onClick }) => {
+  const ToolbarButton = ({ icon: Icon, text, format, value = true, onClick }) => {
     // If the format is active, apply the active styling
     // Handle array formats (like header levels) properly
     let isActive = false;
@@ -69,7 +69,7 @@ const CustomToolbar = ({ quill, activeFormats }) => {
           isActive ? 'bg-blue-100 text-blue-900' : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'
         }`}
       >
-        <Icon className="w-[18px] h-[18px]" />
+        {Icon ? <Icon className="w-[18px] h-[18px]" /> : <span className="text-sm font-semibold">{text}</span>}
       </button>
     );
   };
@@ -81,6 +81,12 @@ const CustomToolbar = ({ quill, activeFormats }) => {
         <ToolbarButton icon={Heading1} format="header" value={1} />
         <ToolbarButton icon={Heading2} format="header" value={2} />
         <ToolbarButton icon={Heading3} format="header" value={3} />
+      </div>
+      <div className="flex items-center gap-1 border-r border-gray-200 pr-2 mr-1">
+        <ToolbarButton text="S" format="size" value="small" />
+        <ToolbarButton text="M" format="size" value={false} />
+        <ToolbarButton text="L" format="size" value="large" />
+        <ToolbarButton text="XL" format="size" value="huge" />
       </div>
       <div className="flex items-center gap-1 border-r border-gray-200 pr-2 mr-1">
         <ToolbarButton icon={Bold} format="bold" />
@@ -367,6 +373,10 @@ const RichTextEditor = ({ documentId, socket, emit }) => {
           [&_.ql-editor.ql-blank::before]:absolute [&_.ql-editor.ql-blank::before]:left-6 sm:[&_.ql-editor.ql-blank::before]:left-[96px] [&_.ql-editor.ql-blank::before]:top-6 sm:[&_.ql-editor.ql-blank::before]:top-[96px] [&_.ql-editor.ql-blank::before]:text-gray-400 [&_.ql-editor.ql-blank::before]:not-italic [&_.ql-editor.ql-blank::before]:pointer-events-none [&_.ql-editor.ql-blank::before]:content-[attr(data-placeholder)]
           
           focus:[&_.ql-editor]:border-gray-300 focus:[&_.ql-editor]:shadow-[0_1px_3px_0_rgba(60,64,67,0.15),0_4px_12px_3px_rgba(60,64,67,0.12)]
+          
+          [&_.ql-size-small]:text-[12px]
+          [&_.ql-size-large]:text-[20px]
+          [&_.ql-size-huge]:text-[28px]
           
           [&_.ql-editor_h1]:text-4xl [&_.ql-editor_h1]:font-bold [&_.ql-editor_h1]:mt-6 [&_.ql-editor_h1]:mb-4
           [&_.ql-editor_h2]:text-3xl [&_.ql-editor_h2]:font-bold [&_.ql-editor_h2]:mt-5 [&_.ql-editor_h2]:mb-3
