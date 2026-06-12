@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import API from '../services/api';
 
-export const useAuthStore = create((set) => ({
+export const useAuthStore = create((set, get) => ({
   user: JSON.parse(localStorage.getItem('user')) || null,
   token: localStorage.getItem('token') || null,
   loading: false,
@@ -37,17 +37,25 @@ export const useAuthStore = create((set) => ({
     }
   },
 
-  logout: async () => {
-    try {
-      await API.post('/auth/logout');
-    } catch (err) {
-      console.error('Logout request failed:', err);
-    } finally {
-      localStorage.removeItem('user');
-      localStorage.removeItem('token');
-      localStorage.removeItem('refreshToken');
-      set({ user: null, token: null });
+  logout: () => {
+    const currentToken = get().token;
+    
+    // Fire and forget API call so it doesn't block the UI
+    if (currentToken) {
+      API.post('/auth/logout', {}, {
+        headers: {
+          Authorization: `Bearer ${currentToken}`
+        }
+      }).catch(() => {
+        // Silently fail if already logged out or token expired
+      });
     }
+
+    // Clear state instantly
+    localStorage.removeItem('user');
+    localStorage.removeItem('token');
+    localStorage.removeItem('refreshToken');
+    set({ user: null, token: null });
   },
 
   setToken: (token) => {
