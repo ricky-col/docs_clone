@@ -59,10 +59,22 @@ if (process.env.NODE_ENV === 'production') {
   app.use('/api', apiLimiter);
 }
 
+// Root Route
+app.get('/', (req, res) => {
+  res.status(200).json({
+    message: 'Docs Clone API is running!',
+    status: 'OK',
+  });
+});
+
 // Health Check API
 app.get('/health', (req, res) => {
-  res.status(200).json({ status: 'OK', uptime: process.uptime() });
+  res.status(200).json({
+    status: 'OK',
+    uptime: process.uptime(),
+  });
 });
+
 
 // REST API Routes
 app.use('/api/auth', authRoutes);
